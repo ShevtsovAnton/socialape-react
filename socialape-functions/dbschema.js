@@ -20,6 +20,14 @@ let db = {
             likeCount: 5,
             commentCount: 2
         }
+    ],
+    comments: [
+        {
+            userHandle: '',
+            screamId: '',
+            body: '',
+            createdAt: ''
+        }
     ]
 }
 const userDetails ={
