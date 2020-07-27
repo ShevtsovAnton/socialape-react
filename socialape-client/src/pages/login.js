@@ -15,6 +15,9 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 const styles = {
+  typography: {
+    useNextVariants: true,
+  },
   form: {
     textAlign: 'center',
   },
@@ -29,7 +32,7 @@ const styles = {
   },
   button: {
     marginTop: 20,
-    position: 'relative'
+    position: 'relative',
   },
   customError: {
     color: 'red',
@@ -37,7 +40,7 @@ const styles = {
     marginTop: 10,
   },
   progress: {
-    position: 'absolute'
+    position: 'absolute',
   }
 };
 
@@ -65,6 +68,7 @@ class login extends Component {
       .post('/login', userData)
       .then((res) => {
         console.log(res.data);
+        localStorage.setItem('FBToken', `Bearer ${res.data.token}`)
         this.setState({
           loading: false,
         });
