@@ -70,7 +70,7 @@ class signup extends Component {
       .post('/signup', newUserData)
       .then((res) => {
         console.log(res.data);
-        localStorage.setItem('FBToken', `Bearer ${res.data.token}`);
+        localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`);
         this.setState({
           loading: false,
         });
@@ -97,7 +97,7 @@ class signup extends Component {
       <Grid container className={classes.form}>
         <Grid item sm />
         <Grid item sm>
-          <img src={AppIcon} alt='app image' className={classes.image} />
+          <img src={AppIcon} alt='app' className={classes.image} />
           <Typography variant='h2' className={classes.pageTitle}>
             Singup
           </Typography>
