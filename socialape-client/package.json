@@ -39,5 +39,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy":  "https://europe-west1-socialize-4fd6b.cloudfunctions.net/api"
+  "proxy": "https://europe-west1-socialize-4fd6b.cloudfunctions.net/api",
+  "devDependencies": {
+    "@material-ui/icons": "^4.9.1"
+  }
 }
