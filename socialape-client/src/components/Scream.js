@@ -14,15 +14,15 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 const styles = {
   card: {
     display: 'flex',
-    marginBottom: 20,
+    marginBottom: 20
   },
   image: {
-    minWidth: 200,
+    minWidth: 200
   },
   content: {
     padding: 25,
-    objectFit: 'cover',
-  },
+    objectFit: 'cover'
+  }
 };
 
 class Scream extends Component {
@@ -30,19 +30,14 @@ class Scream extends Component {
     dayjs.extend(relativeTime);
     const {
       classes,
-      scream: {
-        body,
-        createdAt,
-        userImage,
-        userHandle,
-      },
+      scream: { body, createdAt, userImage, userHandle }
     } = this.props;
     return (
       <Card className={classes.card}>
         {userImage ? (
           <CardMedia
             image={userImage}
-            title='Profile image'
+            title="Profile image"
             className={classes.image}
           />
         ) : (
@@ -50,17 +45,17 @@ class Scream extends Component {
         )}
         <CardContent className={classes.content}>
           <Typography
-            variant='h5'
+            variant="h5"
             component={Link}
             to={`/users/${userHandle}`}
-            color='primary'
+            color="primary"
           >
             {userHandle}
           </Typography>
-          <Typography variant='body2' color='textSecondary'>
+          <Typography variant="body2" color="textSecondary">
             {dayjs(createdAt).fromNow()}
           </Typography>
-          <Typography variant='body1'>{body}</Typography>
+          <Typography variant="body1">{body}</Typography>
         </CardContent>
       </Card>
     );

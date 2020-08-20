@@ -17,32 +17,32 @@ import { signUp } from '../redux/actions/userActions';
 
 const styles = {
   typography: {
-    useNextVariants: true,
+    useNextVariants: true
   },
   form: {
-    textAlign: 'center',
+    textAlign: 'center'
   },
   image: {
-    margin: '20px auto 20px auto',
+    margin: '20px auto 20px auto'
   },
   pageTitle: {
-    margin: '10px auto 10px auto',
+    margin: '10px auto 10px auto'
   },
   textField: {
-    margin: '10px auto 10px auto',
+    margin: '10px auto 10px auto'
   },
   button: {
     marginTop: 20,
-    position: 'relative',
+    position: 'relative'
   },
   customError: {
     color: 'red',
     fontSize: '0.8rem',
-    marginTop: 10,
+    marginTop: 10
   },
   progress: {
-    position: 'absolute',
-  },
+    position: 'absolute'
+  }
 };
 
 class signup extends Component {
@@ -53,14 +53,14 @@ class signup extends Component {
       password: '',
       confirmPassword: '',
       handle: '',
-      errors: {},
+      errors: {}
     };
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.UI.errors) {
       this.setState({
-        errors: nextProps.UI.errors,
+        errors: nextProps.UI.errors
       });
     }
   }
@@ -68,27 +68,27 @@ class signup extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     this.setState({
-      loading: true,
+      loading: true
     });
     const newUserData = {
       email: this.state.email,
       password: this.state.password,
       confirmPassword: this.state.confirmPassword,
-      handle: this.state.handle,
+      handle: this.state.handle
     };
     this.props.signUp(newUserData, this.props.history);
   };
 
   handleChange = (event) => {
     this.setState({
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value
     });
   };
 
   render() {
     const {
       classes,
-      UI: { loading },
+      UI: { loading }
     } = this.props;
     const { errors } = this.state;
 
@@ -96,15 +96,15 @@ class signup extends Component {
       <Grid container className={classes.form}>
         <Grid item sm />
         <Grid item sm>
-          <img src={AppIcon} alt='app' className={classes.image} />
-          <Typography variant='h2' className={classes.pageTitle}>
+          <img src={AppIcon} alt="app" className={classes.image} />
+          <Typography variant="h2" className={classes.pageTitle}>
             Singup
           </Typography>
           <form noValidate onSubmit={this.handleSubmit}>
             <TextField
-              id='email'
-              name='email'
-              label='Email'
+              id="email"
+              name="email"
+              label="Email"
               className={classes.textField}
               value={this.state.email}
               helperText={errors.email}
@@ -113,10 +113,10 @@ class signup extends Component {
               fullWidth
             />
             <TextField
-              id='password'
-              name='password'
-              label='Password'
-              type='password'
+              id="password"
+              name="password"
+              label="Password"
+              type="password"
               className={classes.textField}
               helperText={errors.password}
               error={errors.password ? true : false}
@@ -125,10 +125,10 @@ class signup extends Component {
               fullWidth
             />
             <TextField
-              id='confirmPassword'
-              name='confirmPassword'
-              label='Confirm Password'
-              type='password'
+              id="confirmPassword"
+              name="confirmPassword"
+              label="Confirm Password"
+              type="password"
               className={classes.textField}
               helperText={errors.confirmPassword}
               error={errors.confirmPassword ? true : false}
@@ -137,10 +137,10 @@ class signup extends Component {
               fullWidth
             />
             <TextField
-              id='handle'
-              name='handle'
-              label='Handle'
-              type='text'
+              id="handle"
+              name="handle"
+              label="Handle"
+              type="text"
               className={classes.textField}
               helperText={errors.handle}
               error={errors.handle ? true : false}
@@ -149,14 +149,14 @@ class signup extends Component {
               fullWidth
             />
             {errors.general && (
-              <Typography variant='body2' className={classes.customError}>
+              <Typography variant="body2" className={classes.customError}>
                 {errors.general}
               </Typography>
             )}
             <Button
-              type='submit'
-              variant='contained'
-              color='primary'
+              type="submit"
+              variant="contained"
+              color="primary"
               className={classes.button}
               disabled={loading}
             >
@@ -167,7 +167,7 @@ class signup extends Component {
             </Button>
             <br />
             <small>
-              Already have an account ? sign up <Link to='/signup'>here</Link>
+              Already have an account ? sign up <Link to="/signup">here</Link>
             </small>
           </form>
         </Grid>
@@ -181,12 +181,12 @@ signup.propTypes = {
   classes: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
   UI: PropTypes.object.isRequired,
-  signUp: PropTypes.func.isRequired,
+  signUp: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
   user: state.user,
-  UI: state.UI,
+  UI: state.UI
 });
 
 export default connect(mapStateToProps, { signUp })(withStyles(styles)(signup));

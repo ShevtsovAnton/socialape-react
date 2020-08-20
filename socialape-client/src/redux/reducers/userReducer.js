@@ -2,7 +2,7 @@ import {
   SET_USER,
   LOADING_USER,
   SET_AUTHENTICATED,
-  SET_UNAUTHENTICATED,
+  SET_UNAUTHENTICATED
 } from '../types';
 
 const initialState = {
@@ -10,7 +10,7 @@ const initialState = {
   loading: false,
   credentials: {},
   likes: [],
-  notifications: [],
+  notifications: []
 };
 
 export default function (state = initialState, action) {
@@ -18,7 +18,7 @@ export default function (state = initialState, action) {
     case SET_AUTHENTICATED:
       return {
         ...state,
-        authenticated: true,
+        authenticated: true
       };
     case SET_UNAUTHENTICATED:
       return initialState;
@@ -26,12 +26,12 @@ export default function (state = initialState, action) {
       return {
         authenticated: true,
         loading: false,
-        ...action.payload,
+        ...action.payload
       };
     case LOADING_USER:
       return {
         ...state,
-        loading: true,
+        loading: true
       };
     default:
       return state;

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import AppIcon from '../images/icon.png';
 import { Link } from 'react-router-dom';
 
-
 //MUI
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -18,32 +17,32 @@ import { loginUser } from '../redux/actions/userActions';
 
 const styles = {
   typography: {
-    useNextVariants: true,
+    useNextVariants: true
   },
   form: {
-    textAlign: 'center',
+    textAlign: 'center'
   },
   image: {
-    margin: '20px auto 20px auto',
+    margin: '20px auto 20px auto'
   },
   pageTitle: {
-    margin: '10px auto 10px auto',
+    margin: '10px auto 10px auto'
   },
   textField: {
-    margin: '10px auto 10px auto',
+    margin: '10px auto 10px auto'
   },
   button: {
     marginTop: 20,
-    position: 'relative',
+    position: 'relative'
   },
   customError: {
     color: 'red',
     fontSize: '0.8rem',
-    marginTop: 10,
+    marginTop: 10
   },
   progress: {
-    position: 'absolute',
-  },
+    position: 'absolute'
+  }
 };
 
 class login extends Component {
@@ -52,14 +51,14 @@ class login extends Component {
     this.state = {
       email: '',
       password: '',
-      errors: [],
+      errors: []
     };
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.UI.errors) {
       this.setState({
-        errors: nextProps.UI.errors,
+        errors: nextProps.UI.errors
       });
     }
   }
@@ -68,21 +67,21 @@ class login extends Component {
     event.preventDefault();
     const userData = {
       email: this.state.email,
-      password: this.state.password,
+      password: this.state.password
     };
     this.props.loginUser(userData, this.props.history);
   };
 
   handleChange = (event) => {
     this.setState({
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value
     });
   };
 
   render() {
     const {
       classes,
-      UI: { loading },
+      UI: { loading }
     } = this.props;
     const { errors } = this.state;
 
@@ -90,15 +89,15 @@ class login extends Component {
       <Grid container className={classes.form}>
         <Grid item sm />
         <Grid item sm>
-          <img src={AppIcon} alt='appicon' className={classes.image} />
-          <Typography variant='h2' className={classes.pageTitle}>
+          <img src={AppIcon} alt="appicon" className={classes.image} />
+          <Typography variant="h2" className={classes.pageTitle}>
             Login
           </Typography>
           <form noValidate onSubmit={this.handleSubmit}>
             <TextField
-              id='email'
-              name='email'
-              label='Email'
+              id="email"
+              name="email"
+              label="Email"
               className={classes.textField}
               value={this.state.email}
               helperText={errors.email}
@@ -107,10 +106,10 @@ class login extends Component {
               fullWidth
             />
             <TextField
-              id='password'
-              name='password'
-              label='Password'
-              type='password'
+              id="password"
+              name="password"
+              label="Password"
+              type="password"
               className={classes.textField}
               helperText={errors.password}
               error={errors.password ? true : false}
@@ -119,14 +118,14 @@ class login extends Component {
               fullWidth
             />
             {errors.general && (
-              <Typography variant='body2' className={classes.customError}>
+              <Typography variant="body2" className={classes.customError}>
                 {errors.general}
               </Typography>
             )}
             <Button
-              type='submit'
-              variant='contained'
-              color='primary'
+              type="submit"
+              variant="contained"
+              color="primary"
               className={classes.button}
               disabled={loading}
             >
@@ -137,7 +136,7 @@ class login extends Component {
             </Button>
             <br />
             <small>
-              don't have an account ? sign up <Link to='/signup'>here</Link>
+              don't have an account ? sign up <Link to="/signup">here</Link>
             </small>
           </form>
         </Grid>
@@ -151,16 +150,16 @@ login.propTypes = {
   classes: PropTypes.object.isRequired,
   loginUser: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
-  UI: PropTypes.object.isRequired,
+  UI: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({
   user: state.user,
-  UI: state.UI,
+  UI: state.UI
 });
 
 const mapActionsToProps = {
-  loginUser,
+  loginUser
 };
 
 export default connect(

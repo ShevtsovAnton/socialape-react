@@ -7,7 +7,7 @@ import Profile from '../components/Profile';
 
 export class home extends Component {
   state = {
-    screams: null,
+    screams: null
   };
 
   _isMounted = false;
@@ -19,7 +19,7 @@ export class home extends Component {
       .then((res) => {
         if (this._isMounted) {
           this.setState({
-            screams: res.data,
+            screams: res.data
           });
         }
       })
