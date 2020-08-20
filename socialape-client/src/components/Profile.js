@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
+import EditDetails from './EditDetails';
 
 //MUI
 import Button from '@material-ui/core/Button';
@@ -20,6 +21,7 @@ import LocationOn from '@material-ui/icons/LocationOn';
 import LinkIcon from '@material-ui/icons/Link';
 import CalendarToday from '@material-ui/icons/CalendarToday';
 import EditIcon from '@material-ui/icons/Edit';
+import KeyboardReturn from '@material-ui/icons/KeyboardReturn';
 import Typography from '@material-ui/core/Typography';
 
 const styles = (theme) => ({
@@ -83,6 +85,10 @@ class Profile extends Component {
     fileInput.click();
   };
 
+  handleLogout = () => {
+    this.props.logoutUser();
+  };
+
   render() {
     const {
       classes,
@@ -96,44 +102,44 @@ class Profile extends Component {
       authenticated ? (
         <Paper className={classes.papaer}>
           <div className={classes.profile}>
-            <div className='image-wrapper'>
-              <img src={imageUrl} alt='profile' className='profile-image' />
+            <div className="image-wrapper">
+              <img src={imageUrl} alt="profile" className="profile-image" />
               <input
-                type='file'
-                id='imageInput'
-                hidden='hidden'
+                type="file"
+                id="imageInput"
+                hidden="hidden"
                 onChange={this.handleImageChange}
               />
-              <Tooltip title='Edit profile picture' placement='top'>
-                <IconButton onClick={this.handleEditPicture} className='button'>
-                  <EditIcon color='primary' />
+              <Tooltip title="Edit profile picture" placement="top">
+                <IconButton onClick={this.handleEditPicture} className="button">
+                  <EditIcon color="primary" />
                 </IconButton>
               </Tooltip>
             </div>
             <hr />
-            <div className='profile-details'>
+            <div className="profile-details">
               <MuiLink
                 component={Link}
                 to={`/users/${handle}`}
-                color='primary'
-                variant='h5'
+                color="primary"
+                variant="h5"
               >
                 @{handle}
               </MuiLink>
               <hr />
-              {bio && <Typography variant='body2'>{bio}</Typography>}
+              {bio && <Typography variant="body2">{bio}</Typography>}
               <hr />
               {location && (
                 <Fragment>
-                  <LocationOn color='primary' />
+                  <LocationOn color="primary" />
                   <span>{location}</span>
                   <hr />
                 </Fragment>
               )}
               {website && (
                 <Fragment>
-                  <LinkIcon color='primary'>
-                    <a href={website} target='_blank' rel='noopener noreferrer'>
+                  <LinkIcon color="primary">
+                    <a href={website} target="_blank" rel="noopener noreferrer">
                       {' '}
                       {website}
                     </a>
@@ -141,30 +147,36 @@ class Profile extends Component {
                   </LinkIcon>
                 </Fragment>
               )}
-              <CalendarToday color='primary' />{' '}
+              <CalendarToday color="primary" />
               <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>
             </div>
+            <Tooltip title="Logout" placement="top">
+              <IconButton onClick={this.handleLogout}>
+                <KeyboardReturn color="primary" />
+              </IconButton>
+            </Tooltip>
+            <EditDetails />
           </div>
         </Paper>
       ) : (
         <Paper className={classes.pape}>
-          <Typography variant='body2' align='center'>
+          <Typography variant="body2" align="center">
             No profile found, pease login again
           </Typography>
           <div className={classes.buttons}>
             <Button
-              variant='contained'
-              color='primary'
+              variant="contained"
+              color="primary"
               component={Link}
-              to='/login'
+              to="/login"
             >
               Login
             </Button>
             <Button
-              variant='contained'
-              color='secondary'
+              variant="contained"
+              color="secondary"
               component={Link}
-              to='/signup'
+              to="/signup"
             >
               Signup
             </Button>
